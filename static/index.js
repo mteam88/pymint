@@ -4,3 +4,7 @@ function connectwallet() {
       }
     ethereum.request({ method: 'eth_requestAccounts' });
 }
+
+function donate() {
+  
+}
