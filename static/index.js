@@ -6,5 +6,5 @@ function connectwallet() {
 }
 
 function donate() {
-
+  //fetch /donate
 }
