@@ -1,0 +1,26 @@
+.ball {
+    position: absolute;
+    width: 2%;
+    background-color: transparent;
+}
+
+.player {
+    width: 2%;
+    height: 25%;
+}
+
+.scorelabel {
+    font-size: large;
+    position: absolute;
+}
+
+.playerid {
+    font-size: large;
+    position: absolute;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+}
