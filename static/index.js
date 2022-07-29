@@ -1,3 +1,8 @@
+window.onerror = function(msg, url, linenumber) {
+  alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+  return true;
+}
+
 function connectwallet() {
   if (typeof window.ethereum == 'undefined') {
     alert('Please install Metamask to use this app!');
@@ -6,5 +11,8 @@ function connectwallet() {
 }
 
 function donate() {
-  //fetch /donate
+  //fetch /donate ethereum.selectedAddress
+  fetch(`/donate/${ethereum.selectedAddress}`,{
+    method: "POST",
+  }).then(res => {alert(res.status)})
 }
