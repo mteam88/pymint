@@ -7,7 +7,7 @@ function connectwallet() {
   if (typeof window.ethereum == undefined) {
     alert('Please install Metamask to use this app!');
   }
-  ethereum.request({ method: 'eth_requestAccounts' });
+  return ethereum.request({ method: 'eth_requestAccounts' });
 }
 
 const isMetaMaskConnected = async () => {
@@ -15,11 +15,12 @@ const isMetaMaskConnected = async () => {
   return accounts.length > 0;
 }
 
-function donate() {
-  alert(isMetaMaskConnected())
-  if (isMetaMaskConnected() == true) {
+async function donate() {
+  let connected = await isMetaMaskConnected()
+  console.log(connected)
+  if (connected == false) {
     console.log("wallet not connected")
-    connectwallet()
+    connectwallet().then(res => {donate()})
   } else {
     fetch(`/donate/${ethereum.selectedAddress}`,{
       method: "POST",
