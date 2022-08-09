@@ -15,6 +15,17 @@ const isMetaMaskConnected = async () => {
   return accounts.length > 0;
 }
 
+async function txStatus(txhash) {
+  let receipt = await ethereum.request({
+    method: 'eth_getTransactionReceipt',
+    params: [txhash],
+  });
+  if (receipt && receipt.transactionHash == txhash) {
+    return receipt.status;
+  }
+}
+
+
 async function donate() {
   let connected = await isMetaMaskConnected()
   console.log(connected)
@@ -25,11 +36,11 @@ async function donate() {
     let txjson = await fetch(`/donate/${ethereum.selectedAddress}`,{
       method: "POST",
     }).then(response => {return response.json()})
-    alert(JSON.stringify(txjson))
     let txid = await ethereum.request({
-      method: 'personal_sign',
+      method: 'eth_sendTransaction',
       params: [txjson],
     }).catch(error => {alert(JSON.stringify(error.message))})
-    if (txid !== undefined) {alert(txid)}
+    if (txid !== undefined) {alert(txid)} // debug
+    console.log(await txStatus(txid));
   }
 }
