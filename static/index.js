@@ -14,5 +14,11 @@ function donate() {
   //fetch /donate ethereum.selectedAddress
   fetch(`/donate/${ethereum.selectedAddress}`,{
     method: "POST",
-  }).then(res => {alert(res.status)})
+  }).then(response => {return response.json()})
+    .then(txjson => {
+      ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [txjson],
+      });
+    })
 }
