@@ -21,7 +21,7 @@ async function txStatus(txhash) {
     params: [txhash],
   });
   if (receipt && receipt.transactionHash == txhash) {
-    return receipt.status;
+    return (receipt.status == '0x1');
   }
 }
 
@@ -40,7 +40,7 @@ async function donate() {
       method: 'eth_sendTransaction',
       params: [txjson],
     }).catch(error => {alert(JSON.stringify(error.message))})
-    if (txid !== undefined) {alert(txid)} // debug
-    console.log(await txStatus(txid));
+    while (await txStatus(txid) !== true) {console.log('waiting for transaction to be confirmed')}
+    alert('Transaction Successful! Thank you!')
   }
 }
