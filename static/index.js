@@ -22,14 +22,14 @@ async function donate() {
     console.log("wallet not connected")
     connectwallet().then(res => {donate()})
   } else {
-    fetch(`/donate/${ethereum.selectedAddress}`,{
+    let txjson = await fetch(`/donate/${ethereum.selectedAddress}`,{
       method: "POST",
     }).then(response => {return response.json()})
-      .then(txjson => {
-        ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [txjson],
-        }).catch(error => {alert(JSON.stringify(error.message))});
-      })
+    alert(JSON.stringify(txjson))
+    let txid = await ethereum.request({
+      method: 'personal_sign',
+      params: [txjson],
+    }).catch(error => {alert(JSON.stringify(error.message))})
+    if (txid !== undefined) {alert(txid)}
   }
 }
