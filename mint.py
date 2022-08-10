@@ -1,5 +1,6 @@
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
+from web3 import exceptions
 
 import json
 
@@ -24,16 +25,20 @@ def generate_donate_transaction(from_address):
         })
 
 def generate_mintbyid_transaction(from_address, id):
-    print(pymintscontract.functions.price().call())
-    tx = pymintscontract.functions.mint(int(id)).build_transaction({
-        'nonce': str(w3.eth.get_transaction_count(Web3.toChecksumAddress(from_address))),
-        "value": str(Web3.toHex(pymintscontract.functions.price().call())), 
-        'gasLimit': '0',
-        'from': Web3.toChecksumAddress(from_address),
-        })
-    for key in ['gas', 'maxFeePerGas', 'maxPriorityFeePerGas', 'chainId']: 
-        del tx[key]
-    return tx
+    try:
+        tx = pymintscontract.functions.mint(int(id)).build_transaction({
+            'nonce': str(w3.eth.get_transaction_count(Web3.toChecksumAddress(from_address))),
+            "value": str(Web3.toHex(pymintscontract.functions.price().call())), 
+            'gasLimit': '0',
+            'from': Web3.toChecksumAddress(from_address),
+            })
+        for key in ['gas', 'maxFeePerGas', 'maxPriorityFeePerGas', 'chainId']: 
+            del tx[key]
+        return tx
+    except exceptions.ContractLogicError as err:
+        print('contractlogicerror')
+        return json.dumps({'error': str(err)})
+
 
 def get_current_price():
     return str(Web3.fromWei(pymintscontract.functions.price().call(), 'ether'))

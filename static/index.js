@@ -1,9 +1,9 @@
-window.onerror = function(msg, url, linenumber) {
-  alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+window.onerror = function (msg, url, linenumber) {
+  alert('Error message: ' + msg + '\nURL: ' + url + '\nLine Number: ' + linenumber);
   return true;
 }
 
-window.onload = async function() {
+window.onload = async function () {
   currentprice = document.getElementById('currentprice');
   currentprice.innerHTML = `MATIC: ${await getcurrentprice()}`;
   unminted = document.getElementById('unminted');
@@ -11,11 +11,11 @@ window.onload = async function() {
 }
 
 async function getcurrentprice() {
-  return fetch('/currentprice',{method: "GET"}).then(response=>response.text())
+  return fetch('/currentprice', { method: "GET" }).then(response => response.text())
 }
 
 async function getunminted() {
-  return fetch('/getunminted',{method: "GET"}).then(response=>response.text())
+  return fetch('/getunminted', { method: "GET" }).then(response => response.text())
 }
 
 function connectwallet() {
@@ -46,35 +46,38 @@ async function donate() {
   console.log(connected)
   if (connected == false) {
     console.log("wallet not connected")
-    connectwallet().then(res => {donate()})
+    connectwallet().then(res => { donate() })
   } else {
-    let txjson = await fetch(`/donate/${ethereum.selectedAddress}`,{
+    let txjson = await fetch(`/donate/${ethereum.selectedAddress}`, {
       method: "POST",
-    }).then(response => {return response.json()})
+    }).then(response => { return response.json() })
     let txid = await ethereum.request({
       method: 'eth_sendTransaction',
       params: [txjson],
-    }).catch(error => {alert(JSON.stringify(error.message))})
-    while (await txStatus(txid) !== true) {console.log('waiting for transaction to be confirmed')}
+    }).catch(error => { alert(JSON.stringify(error.message)) })
+    while (await txStatus(txid) !== true) { console.log('waiting for transaction to be confirmed') }
     alert('Transaction Successful! Thank you!');
   }
 }
 
 async function mintbyid(id) {
+  if (id == '') { alert('Please enter a Mint ID to select which nft to mint'); return; };
+
   let connected = await isMetaMaskConnected()
   console.log(connected)
   if (connected == false) {
     console.log("wallet not connected")
-    connectwallet().then(res => {mintbyid()})
+    connectwallet().then(res => { mintbyid() })
   } else {
-    let txjson = await fetch(`/mintbyid/${ethereum.selectedAddress}/${id}`,{
+    let txjson = await fetch(`/mintbyid/${ethereum.selectedAddress}/${id}`, {
       method: "POST",
-    }).then(response => {return response.json()})
+    }).then(response => { return response.json() })
+    if (txjson.error !== undefined) {alert(JSON.stringify(txjson.error)); return;};
     let txid = await ethereum.request({
       method: 'eth_sendTransaction',
       params: [txjson],
-    }).catch(error => {alert(JSON.stringify(error.message))})
-    while (await txStatus(txid) !== true) {console.log('waiting for transaction to be confirmed')}
+    }).catch(error => { alert(JSON.stringify(error.message)) })
+    while (await txStatus(txid) !== true) { console.log('waiting for transaction to be confirmed') }
     alert(`Transaction Successful! ${txid}`);
     location.reload();
   }

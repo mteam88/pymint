@@ -8,6 +8,11 @@ body {
     height: 100%
 }
 
+#mintbtn {
+    background-color: black;
+    color: white;
+}
+
 #mintwidget {
     border-width: 3%;
     border-color: black;
