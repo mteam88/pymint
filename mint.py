@@ -39,5 +39,7 @@ def get_current_price():
     return str(Web3.fromWei(pymintscontract.functions.price().call(), 'ether'))
 
 def get_unminted():
-    print(pymintscontract.functions.minted(0).call())
-    return str(1 - pymintscontract.functions.minted(0).call())
+    total_unminted = 0
+    for nftid in range(0,pymintscontract.functions.MAXID().call()+1):
+        total_unminted += (1 - pymintscontract.functions.minted(nftid).call())
+    return str(total_unminted)

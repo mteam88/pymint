@@ -76,5 +76,6 @@ async function mintbyid(id) {
     }).catch(error => {alert(JSON.stringify(error.message))})
     while (await txStatus(txid) !== true) {console.log('waiting for transaction to be confirmed')}
     alert(`Transaction Successful! ${txid}`);
+    location.reload();
   }
 }
