@@ -3,6 +3,15 @@ window.onerror = function(msg, url, linenumber) {
   return true;
 }
 
+window.onload = async function() {
+  currentprice = document.getElementById('currentprice');
+  currentprice.innerHTML = `MATIC: ${await getcurrentprice()}`;
+}
+
+async function getcurrentprice() {
+  return fetch('/currentprice',{method: "GET"}).then(response=>response.text())
+}
+
 function connectwallet() {
   if (typeof window.ethereum == undefined) {
     alert('Please install Metamask to use this app!');

@@ -16,4 +16,9 @@ def donate(from_address):
 def mintbyid(from_address, id):
     return mint.generate_mintbyid_transaction(from_address, id)
 
+@app.route('/currentprice', methods=['POST', 'GET'])
+def currentprice():
+    print(mint.get_current_price())
+    return mint.get_current_price()
+
 app.run(debug=True)
