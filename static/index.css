@@ -3,7 +3,8 @@ button {
     border-style: ridge;
 }
 
-html, body {
+html,
+body {
     height: 100%
 }
 
@@ -12,10 +13,13 @@ html, body {
     border-color: black;
     border-style: groove;
     border-radius: 10%;
+    margin: 0;
     position: absolute;
-    top: 33%;
-    left: 33%;
-    padding: 5% 5% 5% 5%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 10%;
     background: linear-gradient(142deg, #a1138f, #4813a1, #618ac3);
     background-size: 600% 600%;
 
@@ -25,19 +29,45 @@ html, body {
 }
 
 @-webkit-keyframes MintWidgetBGGradient {
-    0%{background-position:22% 0%}
-    50%{background-position:79% 100%}
-    100%{background-position:22% 0%}
+    0% {
+        background-position: 22% 0%
+    }
+
+    50% {
+        background-position: 79% 100%
+    }
+
+    100% {
+        background-position: 22% 0%
+    }
 }
+
 @-moz-keyframes MintWidgetBGGradient {
-    0%{background-position:22% 0%}
-    50%{background-position:79% 100%}
-    100%{background-position:22% 0%}
+    0% {
+        background-position: 22% 0%
+    }
+
+    50% {
+        background-position: 79% 100%
+    }
+
+    100% {
+        background-position: 22% 0%
+    }
 }
+
 @keyframes MintWidgetBGGradient {
-    0%{background-position:22% 0%}
-    50%{background-position:79% 100%}
-    100%{background-position:22% 0%}
+    0% {
+        background-position: 22% 0%
+    }
+
+    50% {
+        background-position: 79% 100%
+    }
+
+    100% {
+        background-position: 22% 0%
+    }
 }
 
 .flickerFade {
@@ -46,15 +76,31 @@ html, body {
 }
 
 @-webkit-keyframes flickerFade {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 @keyframes flickerFade {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
 }
 
 body {
@@ -69,17 +115,43 @@ body {
 }
 
 @-webkit-keyframes MintWidgetBGGradient {
-    0%{background-position:0% 25%}
-    50%{background-position:100% 76%}
-    100%{background-position:0% 25%}
+    0% {
+        background-position: 0% 25%
+    }
+
+    50% {
+        background-position: 100% 76%
+    }
+
+    100% {
+        background-position: 0% 25%
+    }
 }
+
 @-moz-keyframes MintWidgetBGGradient {
-    0%{background-position:0% 25%}
-    50%{background-position:100% 76%}
-    100%{background-position:0% 25%}
+    0% {
+        background-position: 0% 25%
+    }
+
+    50% {
+        background-position: 100% 76%
+    }
+
+    100% {
+        background-position: 0% 25%
+    }
 }
+
 @keyframes MintWidgetBGGradient {
-    0%{background-position:0% 25%}
-    50%{background-position:100% 76%}
-    100%{background-position:0% 25%}
+    0% {
+        background-position: 0% 25%
+    }
+
+    50% {
+        background-position: 100% 76%
+    }
+
+    100% {
+        background-position: 0% 25%
+    }
 }
