@@ -1,26 +1,85 @@
-.ball {
-    position: absolute;
-    width: 2%;
-    background-color: transparent;
+button {
+    border: blue;
+    border-style: ridge;
 }
 
-.player {
-    width: 2%;
-    height: 25%;
+html, body {
+    height: 100%
 }
 
-.scorelabel {
-    font-size: large;
+#mintwidget {
+    border-width: 3%;
+    border-color: black;
+    border-style: groove;
+    border-radius: 10%;
     position: absolute;
+    top: 33%;
+    left: 33%;
+    padding: 5% 5% 5% 5%;
+    background: linear-gradient(142deg, #a1138f, #4813a1, #618ac3);
+    background-size: 600% 600%;
+
+    -webkit-animation: MintWidgetBGGradient 1s ease infinite;
+    -moz-animation: MintWidgetBGGradient 1s ease infinite;
+    animation: MintWidgetBGGradient 1s ease infinite;
 }
 
-.playerid {
-    font-size: large;
-    position: absolute;
+@-webkit-keyframes MintWidgetBGGradient {
+    0%{background-position:22% 0%}
+    50%{background-position:79% 100%}
+    100%{background-position:22% 0%}
+}
+@-moz-keyframes MintWidgetBGGradient {
+    0%{background-position:22% 0%}
+    50%{background-position:79% 100%}
+    100%{background-position:22% 0%}
+}
+@keyframes MintWidgetBGGradient {
+    0%{background-position:22% 0%}
+    50%{background-position:79% 100%}
+    100%{background-position:22% 0%}
+}
+
+.flickerFade {
+    animation: flickerFade 5s ease infinite;
+    -webkit-animation: flickerFade 5s ease infinite;
+}
+
+@-webkit-keyframes flickerFade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes flickerFade {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
 }
 
 body {
-    background-color: rgb(0, 0, 0);
     color: white;
     text-align: center;
+    background: linear-gradient(44deg, #000000, #3e0994);
+    background-size: 400% 400%;
+
+    -webkit-animation: MintWidgetBGGradient 13s ease infinite;
+    -moz-animation: MintWidgetBGGradient 13s ease infinite;
+    animation: MintWidgetBGGradient 13s ease infinite;
+}
+
+@-webkit-keyframes MintWidgetBGGradient {
+    0%{background-position:0% 25%}
+    50%{background-position:100% 76%}
+    100%{background-position:0% 25%}
+}
+@-moz-keyframes MintWidgetBGGradient {
+    0%{background-position:0% 25%}
+    50%{background-position:100% 76%}
+    100%{background-position:0% 25%}
+}
+@keyframes MintWidgetBGGradient {
+    0%{background-position:0% 25%}
+    50%{background-position:100% 76%}
+    100%{background-position:0% 25%}
 }

@@ -8,11 +8,14 @@
         <title>Pymint</title>
     </head>
     <body>
-        <button onclick="connectwallet()">Connect your wallet!</button>
-        <button onclick="donate()">Donate!</button>
-        <button onclick="mintbyid(document.getElementById('mintid').value);">Mint!</button>
-        <input id="mintid" placeholder="Mint ID">
-        <h3>Current Mint Price: </h3>
-        <p id="currentprice"><em>loading...</em></p>
+        <button style="float: left" onclick="connectwallet()">Connect your wallet!</button>
+        <div id="mintwidget">
+            <h2>MINT YOUR OWN!</h2>
+            <button onclick="mintbyid(document.getElementById('mintid').value);">Mint!</button>
+            <input id="mintid" placeholder="Mint ID">
+            <h3>Current Mint Price: </h3>
+            <p class="flickerFade" id="currentprice"><em>loading...</em></p>
+        </div>
+        <button style="position: absolute; bottom: 5%;" onclick="donate()">Donate!</button>
     </body>
 </html>
