@@ -41,6 +41,25 @@ async function donate() {
       params: [txjson],
     }).catch(error => {alert(JSON.stringify(error.message))})
     while (await txStatus(txid) !== true) {console.log('waiting for transaction to be confirmed')}
-    alert('Transaction Successful! Thank you!')
+    alert('Transaction Successful! Thank you!');
+  }
+}
+
+async function mintbyid(id) {
+  let connected = await isMetaMaskConnected()
+  console.log(connected)
+  if (connected == false) {
+    console.log("wallet not connected")
+    connectwallet().then(res => {mintbyid()})
+  } else {
+    let txjson = await fetch(`/mintbyid/${ethereum.selectedAddress}/${id}`,{
+      method: "POST",
+    }).then(response => {return response.json()})
+    let txid = await ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [txjson],
+    }).catch(error => {alert(JSON.stringify(error.message))})
+    while (await txStatus(txid) !== true) {console.log('waiting for transaction to be confirmed')}
+    alert(`Transaction Successful! ${txid}`);
   }
 }
