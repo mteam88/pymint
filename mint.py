@@ -23,12 +23,6 @@ def generate_donate_transaction(from_address):
         'gasLimit': '0'
         })
 
-def stringifyvalue(dictionary, key):
-    dictionary[key] = str(dictionary[key])
-
-def delvalue(dictionary, key):
-    del dictionary[key]
-
 def generate_mintbyid_transaction(from_address, id):
     print(pymintscontract.functions.price().call())
     tx = pymintscontract.functions.mint(int(id)).build_transaction({
@@ -37,8 +31,6 @@ def generate_mintbyid_transaction(from_address, id):
         'gasLimit': '0',
         'from': Web3.toChecksumAddress(from_address),
         })
-    del tx['chainId']
-    keys = ['gas', 'maxFeePerGas', 'maxPriorityFeePerGas']
-    for key in keys: 
-        delvalue(tx, key)
+    for key in ['gas', 'maxFeePerGas', 'maxPriorityFeePerGas', 'chainId']: 
+        del tx[key]
     return tx
