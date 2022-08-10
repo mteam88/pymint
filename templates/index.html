@@ -10,6 +10,7 @@
     <body>
         <button onclick="connectwallet()">Connect your wallet!</button>
         <button onclick="donate()">Donate!</button>
-        <button onclick="mintbyid(1)">Mint!</button>
+        <button onclick="mintbyid(document.getElementById('mintid').value);">Mint!</button>
+        <input id="mintid" placeholder="Mint ID">
     </body>
 </html>
