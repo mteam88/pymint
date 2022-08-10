@@ -37,3 +37,7 @@ def generate_mintbyid_transaction(from_address, id):
 
 def get_current_price():
     return str(Web3.fromWei(pymintscontract.functions.price().call(), 'ether'))
+
+def get_unminted():
+    print(pymintscontract.functions.minted(0).call())
+    return str(1 - pymintscontract.functions.minted(0).call())

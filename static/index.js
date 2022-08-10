@@ -6,10 +6,16 @@ window.onerror = function(msg, url, linenumber) {
 window.onload = async function() {
   currentprice = document.getElementById('currentprice');
   currentprice.innerHTML = `MATIC: ${await getcurrentprice()}`;
+  unminted = document.getElementById('unminted');
+  unminted.innerHTML = `ONLY ${await getunminted()} REMAINING!`;
 }
 
 async function getcurrentprice() {
   return fetch('/currentprice',{method: "GET"}).then(response=>response.text())
+}
+
+async function getunminted() {
+  return fetch('/getunminted',{method: "GET"}).then(response=>response.text())
 }
 
 function connectwallet() {
