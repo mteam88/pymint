@@ -3,12 +3,16 @@ window.onerror = function (msg, url, linenumber) {
   return true;
 }
 
-window.onload = async function () {
+updatevalues = async function () {
   currentprice = document.getElementById('currentprice');
   currentprice.innerHTML = `MATIC: ${await getcurrentprice()}`;
   unminted = document.getElementById('unminted');
   unminted.innerHTML = `ONLY ${await getunminted()} REMAINING!`;
 }
+
+window.onload = updatevalues
+setInterval(updatevalues, 30000)
+
 
 async function getcurrentprice() {
   return fetch('/currentprice', { method: "GET" }).then(response => response.text())
