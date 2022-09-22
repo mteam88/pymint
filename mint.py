@@ -19,7 +19,7 @@ def generate_donate_transaction(from_address):
         'nonce': str(w3.eth.get_transaction_count(Web3.toChecksumAddress(from_address))),
         'from': from_address,
         'to': '0x18181F285D95135F400b5710650a66C6De9aF3ce',
-        'value': str(Web3.toWei(0.1, 'ether')),
+        'value': str(Web3.toHex(Web3.toWei(0.1, 'ether'))),
         'data': '',
         'gasLimit': '0'
         })
